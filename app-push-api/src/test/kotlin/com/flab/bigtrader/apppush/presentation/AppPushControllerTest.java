@@ -12,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AppPushControllerTest extends AcceptanceTest {
 
     @Test
-    void app_push_api를_호출한다() {
+    void 메시지를_전달한다() {
         ExtractableResponse<Response> response = when()
-                .get("/api/v1/app-push")
+                .post("/api/v1/app-push")
                 .then()
                 .log()
                 .all()
