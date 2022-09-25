@@ -12,7 +12,7 @@ public class AppPushController {
 
     @PostMapping("/app-push")
     @ResponseStatus(HttpStatus.OK)
-    public void dummyApi() {
+    public void sendMessage() {
 
     }
 }
