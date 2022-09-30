@@ -5,6 +5,8 @@ plugins {
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
     id("org.asciidoctor.convert") version "1.5.8"
     id("io.freefair.lombok") version "6.5.1"
+    id("checkstyle")
+
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
 }
@@ -65,4 +67,14 @@ tasks {
         sourceDir("src/main/asciidoc")
         dependsOn(test)
     }
+}
+
+val naverCheckStyleDir = File("${rootDir}/config/checkstyle/naver-checkstyle-rules.xml")
+val naverSuppressionDir = hashMapOf<String, Any>("suppressionFile" to "${rootDir}/config/checkstyle/naver-checkstyle-suppressions.xml")
+
+checkstyle {
+    maxWarnings = 0
+    configFile = naverCheckStyleDir
+    configProperties = naverSuppressionDir
+    toolVersion = "10.3.1"
 }

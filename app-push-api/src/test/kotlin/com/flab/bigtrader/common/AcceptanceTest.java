@@ -9,11 +9,11 @@ import io.restassured.RestAssured;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AcceptanceTest {
 
-    @LocalServerPort
-    protected int port;
+	@LocalServerPort
+	protected int port;
 
-    @BeforeEach
-    void setUp() {
-        RestAssured.port = this.port;
-    }
+	@BeforeEach
+	void setUp() {
+		RestAssured.port = this.port;
+	}
 }
