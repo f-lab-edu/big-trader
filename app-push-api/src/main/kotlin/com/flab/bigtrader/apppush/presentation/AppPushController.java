@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AppPushController {
 
-    @PostMapping("/app-push")
-    @ResponseStatus(HttpStatus.OK)
-    public void sendMessage() {
+	@PostMapping("/app-push")
+	@ResponseStatus(HttpStatus.OK)
+	public void sendMessage() {
 
-    }
+	}
 }
