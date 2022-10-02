@@ -26,9 +26,5 @@ public class AppPushController {
 	@ResponseStatus(HttpStatus.OK)
 	public void sendAppPush(@RequestBody AppPushRequest appPushRequest) {
 		AppPushSendResult appPushSendResult = appPushClient.sendAppPush(appPushRequest.toAppPushSendEvent());
-
-		if (log.isDebugEnabled()) {
-			log.debug("현재 앱푸시 전달 개수: {}", appPushSendResult.getCount());
-		}
 	}
 }
