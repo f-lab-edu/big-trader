@@ -17,9 +17,7 @@ public class AppPushSendResultStatusLoggingHelper {
 	@Around("execution(* com.flab.bigtrader.apppush.infrastructure.DefaultAppPushClient.sendAppPush(..))")
 	public Object logSendCount(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
 		AppPushSendResult result = (AppPushSendResult)proceedingJoinPoint.proceed();
-		if (log.isDebugEnabled()) {
-			log.debug("앱 푸쉬 전달 개수 : {}", result.getCount());
-		}
+		log.info("앱 푸쉬 전달 개수 : {}", result.getCount());
 		return result;
 	}
 }
