@@ -1,3 +1,3 @@
 rootProject.name = "bigtrader"
 include("app-push-api")
-include("big-trader")
+include("big-trader-api")
