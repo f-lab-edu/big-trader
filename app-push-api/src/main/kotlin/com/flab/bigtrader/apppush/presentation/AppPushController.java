@@ -1,8 +1,9 @@
 package com.flab.bigtrader.apppush.presentation;
 
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.flab.bigtrader.apppush.common.AppPushRequestCounter;
@@ -18,10 +19,10 @@ public class AppPushController {
 	private final AppPushRequestCounter appPushRequestCounter;
 
 	@PostMapping("/app-push")
-	public ResponseEntity<AppPushSendResponse> sendMessage() {
+	@ResponseStatus(HttpStatus.OK)
+	public AppPushSendResponse sendMessage() {
 		long count = appPushRequestCounter.increaseAndGet();
 
-		return ResponseEntity.ok()
-			.body(new AppPushSendResponse(count));
+		return new AppPushSendResponse(count);
 	}
 }

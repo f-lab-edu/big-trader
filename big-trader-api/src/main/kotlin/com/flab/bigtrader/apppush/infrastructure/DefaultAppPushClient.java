@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -34,6 +35,7 @@ public class DefaultAppPushClient implements AppPushClient {
 		this.webClient = WebClient.create(this.appPushServerBaseUrl);
 	}
 
+	@Async
 	public AppPushSendResult sendAppPush(AppPushSendEvent appPushSendEvent) {
 		Mono<AppPushSendResult> resultMono = webClient.post()
 			.uri("/api/v1/app-push")

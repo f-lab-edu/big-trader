@@ -24,7 +24,9 @@ public class AppPushController {
 
 	@PostMapping("/messages")
 	@ResponseStatus(HttpStatus.OK)
-	public void sendAppPush(@RequestBody AppPushRequest appPushRequest) {
-		AppPushSendResult appPushSendResult = appPushClient.sendAppPush(appPushRequest.toAppPushSendEvent());
+	public void sendAppPush(@RequestBody AppPushRequest appPushRequest) throws Exception {
+		for (int i = 0; i < 100_000; i++) {
+			AppPushSendResult appPushSendResult = appPushClient.sendAppPush(appPushRequest.toAppPushSendEvent());
+		}
 	}
 }
