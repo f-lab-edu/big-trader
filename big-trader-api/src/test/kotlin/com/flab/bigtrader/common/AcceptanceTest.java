@@ -9,7 +9,7 @@ import org.springframework.test.context.ActiveProfiles;
 import io.restassured.RestAssured;
 
 @ActiveProfiles("test")
-@Import(IntegrationTestConfiguration.class)
+@Import(IntegrationTestConfig.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AcceptanceTest {
 
