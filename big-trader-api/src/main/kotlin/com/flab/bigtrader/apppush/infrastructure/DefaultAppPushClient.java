@@ -1,6 +1,7 @@
 package com.flab.bigtrader.apppush.infrastructure;
 
 import java.time.Duration;
+import java.util.concurrent.CountDownLatch;
 
 import javax.annotation.PostConstruct;
 
@@ -36,7 +37,7 @@ public class DefaultAppPushClient implements AppPushClient {
 	}
 
 	@Async
-	public AppPushSendResult sendAppPush(AppPushSendEvent appPushSendEvent) {
+	public void sendAppPush(AppPushSendEvent appPushSendEvent, CountDownLatch countDownLatch) {
 		Mono<AppPushSendResult> resultMono = webClient.post()
 			.uri("/api/v1/app-push")
 			.contentType(MediaType.APPLICATION_JSON)
@@ -48,6 +49,8 @@ public class DefaultAppPushClient implements AppPushClient {
 			.timeout(Duration.ofSeconds(60))
 			.onErrorMap(ReadTimeoutException.class, AppPushServerConnectionException::new);
 
-		return resultMono.block();
+		resultMono.block();
+		
+		countDownLatch.countDown();
 	}
 }
