@@ -7,8 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.flab.bigtrader.apppush.infrastructure.AppPushClient;
-import com.flab.bigtrader.apppush.infrastructure.AppPushSendResult;
+import com.flab.bigtrader.apppush.infrastructure.AppPushService;
 import com.flab.bigtrader.apppush.presentation.dto.AppPushRequest;
 
 import lombok.RequiredArgsConstructor;
@@ -19,14 +18,12 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequiredArgsConstructor
 public class AppPushController {
-
-	private final AppPushClient appPushClient;
+	
+	private final AppPushService appPushService;
 
 	@PostMapping("/messages")
 	@ResponseStatus(HttpStatus.OK)
 	public void sendAppPush(@RequestBody AppPushRequest appPushRequest) throws Exception {
-		for (int i = 0; i < 100_000; i++) {
-			AppPushSendResult appPushSendResult = appPushClient.sendAppPush(appPushRequest.toAppPushSendEvent());
-		}
+		appPushService.sendMessages(appPushRequest);
 	}
 }
