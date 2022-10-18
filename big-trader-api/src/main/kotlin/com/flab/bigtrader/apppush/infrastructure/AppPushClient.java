@@ -1,6 +1,8 @@
 package com.flab.bigtrader.apppush.infrastructure;
 
+import java.util.concurrent.CountDownLatch;
+
 public interface AppPushClient {
 
-	AppPushSendResult sendAppPush(AppPushSendEvent appPushSendEvent);
+    void sendAppPush(AppPushSendEvent appPushSendEvent, CountDownLatch countDownLatch);
 }
