@@ -4,5 +4,5 @@ import com.flab.bigtrader.apppush.infrastructure.AppPushSendEvent;
 
 public interface AppPushService {
 
-    void sendAppPush(AppPushSendEvent appPushSendEvent);
+	void sendAppPush(AppPushSendEvent appPushSendEvent);
 }

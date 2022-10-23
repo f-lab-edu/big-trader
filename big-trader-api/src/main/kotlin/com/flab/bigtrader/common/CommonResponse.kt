@@ -1,7 +1,7 @@
 package com.flab.bigtrader.common
 
 data class CommonErrorResponse(
-    val message: String,
+        val message: String,
 ) {
     companion object {
         @JvmStatic
