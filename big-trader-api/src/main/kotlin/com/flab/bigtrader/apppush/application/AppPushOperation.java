@@ -6,6 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import com.flab.bigtrader.common.exception.UnSupportedAppPushOperationException;
+
 public enum AppPushOperation {
 	BLOCKING,
 	NON_BLOCKING;
@@ -20,6 +22,15 @@ public enum AppPushOperation {
 		String convertTargetOperation = convertDashToUnderBar(targetOperation).toUpperCase();
 		AppPushOperation appPushOperation = POSSIBLE_OPERATIONS.get(convertTargetOperation);
 		return appPushOperation != null;
+	}
+
+	public static AppPushOperation getOperation(String targetOperation) {
+		if (targetOperation == null || targetOperation.isBlank()) {
+			throw new UnSupportedAppPushOperationException();
+		}
+
+		String convertTargetOperation = convertDashToUnderBar(targetOperation).toUpperCase();
+		return POSSIBLE_OPERATIONS.get(convertTargetOperation);
 	}
 
 	private static String convertDashToUnderBar(String targetOperation) {

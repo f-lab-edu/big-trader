@@ -41,5 +41,4 @@ class AppPushOperationTest {
 		// then
 		assertThat(result).isFalse();
 	}
-
 }

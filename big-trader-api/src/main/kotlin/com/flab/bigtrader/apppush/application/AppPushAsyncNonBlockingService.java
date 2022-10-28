@@ -37,7 +37,7 @@ public class AppPushAsyncNonBlockingService implements AppPushService {
 		awaitTotalLoopEnd(countDownLatch);
 
 		log.info("종료시간: {}", end);
-		log.info("총 시간: {}초", end - start);
+		log.info("총 시간: {}ms초", end - start);
 	}
 
 	private void awaitTotalLoopEnd(CountDownLatch countDownLatch) {
