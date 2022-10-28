@@ -3,6 +3,7 @@ package com.flab.bigtrader.common.config;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.convert.converter.Converter;
@@ -30,10 +31,9 @@ public class AppPushConfig {
 	public static class AppPushOperatorConverter implements Converter<String, AppPushOperation> {
 
 		@Override
-		public AppPushOperation convert(String operation) {
-			String targetOperation = operation.toUpperCase();
-			if (AppPushOperation.isPossibleOperation(targetOperation)) {
-				return AppPushOperation.valueOf(targetOperation);
+		public AppPushOperation convert(@NotNull String operation) {
+			if (AppPushOperation.isPossibleOperation(operation)) {
+				return AppPushOperation.valueOf(operation);
 			}
 
 			return AppPushOperation.BLOCKING;

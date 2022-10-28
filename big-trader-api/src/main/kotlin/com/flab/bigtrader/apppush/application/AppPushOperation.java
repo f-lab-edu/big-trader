@@ -16,8 +16,14 @@ public enum AppPushOperation {
 		if (targetOperation == null || targetOperation.isBlank()) {
 			return false;
 		}
-		AppPushOperation appPushOperation = POSSIBLE_OPERATIONS.get(targetOperation.toUpperCase());
+
+		String convertTargetOperation = convertDashToUnderBar(targetOperation).toUpperCase();
+		AppPushOperation appPushOperation = POSSIBLE_OPERATIONS.get(convertTargetOperation);
 		return appPushOperation != null;
+	}
+
+	private static String convertDashToUnderBar(String targetOperation) {
+		return targetOperation.replace("-", "_");
 	}
 
 	private static Map<String, AppPushOperation> cachePossibleOperations() {

@@ -11,7 +11,7 @@ class AppPushOperationTest {
 
 	@DisplayName("앱푸쉬 operation 파싱에 성공한다.")
 	@ParameterizedTest
-	@ValueSource(strings = {"BLOCKING", "NON_BLOCKING", "blocking", "non_blocking"})
+	@ValueSource(strings = {"BLOCKING", "NON-BLOCKING", "blocking", "non-blocking"})
 	void 앱푸쉬_operation_파싱에_성공한다(String targetOperation) {
 		// given when
 		boolean result = AppPushOperation.isPossibleOperation(targetOperation);
@@ -31,6 +31,7 @@ class AppPushOperationTest {
 		assertThat(result).isFalse();
 	}
 
+	@DisplayName("파싱하지 못하는 문자가 올 경우 앱푸쉬 operation 파싱에 실패한다.")
 	@ParameterizedTest
 	@ValueSource(strings = {"blok", "nonblock"})
 	void 파싱하지못하는_문자가_올경우_앱푸쉬_operation_파싱에_실패한다(String targetOperation) {
