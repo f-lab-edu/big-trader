@@ -13,7 +13,10 @@ public enum AppPushOperation {
 	private static final Map<String, AppPushOperation> POSSIBLE_OPERATIONS = cachePossibleOperations();
 
 	public static boolean isPossibleOperation(String targetOperation) {
-		AppPushOperation appPushOperation = POSSIBLE_OPERATIONS.get(targetOperation);
+		if (targetOperation == null || targetOperation.isBlank()) {
+			return false;
+		}
+		AppPushOperation appPushOperation = POSSIBLE_OPERATIONS.get(targetOperation.toUpperCase());
 		return appPushOperation != null;
 	}
 
