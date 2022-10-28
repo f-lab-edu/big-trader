@@ -38,7 +38,7 @@ public class NonBlockingAppPushClient implements AppPushClient {
 
 	@PostConstruct
 	private void setUpWebClient() {
-		ConnectionProvider connectionProvider = ConnectionProvider.builder("myConnectionPool")
+		ConnectionProvider connectionProvider = ConnectionProvider.builder("non-blocking-connection-provider")
 			.maxIdleTime(Duration.ofSeconds(20))
 			.evictInBackground(Duration.ofSeconds(30))
 			.pendingAcquireMaxCount(-1)
