@@ -1,5 +1,5 @@
 package com.flab.bigtrader.apppush.presentation.dto
 
-data class AppPushSendResponse(
-    val count: Long,
+data class AppPushSendRequest(
+        val message: String
 )

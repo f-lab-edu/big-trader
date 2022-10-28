@@ -1,4 +1,4 @@
-package com.flab.bigtrader.common.configuration;
+package com.flab.bigtrader.common.config;
 
 import java.util.concurrent.Executor;
 
@@ -9,7 +9,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
 @EnableAsync
-public class AsyncThreadConfiguration implements AsyncConfigurer {
+public class AsyncThreadConfig implements AsyncConfigurer {
 
 	@Override
 	public Executor getAsyncExecutor() {
