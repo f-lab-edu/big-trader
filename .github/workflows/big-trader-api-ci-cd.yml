@@ -53,6 +53,6 @@ jobs:
             
             docker pull ${{ secrets.BIGTRADER_DOCKER_REGISTRY }}/big-trader-api:latest
             
-            docker run -d --name big-trader-api -p 8081:8080 ${{ secrets.BIGTRADER_DOCKER_REGISTRY }}/big-trader-api
+            docker run -d --name big-trader-api -p 8081:8080 -e JASYPT_PASSWORD=${{ secrets.BIGTRADER_JASYPT_SECRET_KEY }} -e USE_PROFILE=prod ${{ secrets.BIGTRADER_DOCKER_REGISTRY }}/big-trader-api
             
             exit
