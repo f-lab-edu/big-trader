@@ -47,7 +47,6 @@ jobs:
           host: ${{ secrets.BIGTRADER_HOST_IP }}
           username: ${{ secrets.BIGTRADER_HOST_USER }}
           key: ${{ secrets.BIGTRADER_PEM_KEY }}
-          port: ${{ secrets.BIGTRADER_PORT }}
           script: |
             docker login -u ${{ secrets.BIGTRADER_ACCESS_KEY }} ${{ secrets.BIGTRADER_DOCKER_REGISTRY }} -p ${{ secrets.BIGTRADER_SECRET_KEY }}
             
