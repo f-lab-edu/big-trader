@@ -44,6 +44,10 @@ dependencies {
     // AOP
     implementation("org.springframework.boot:spring-boot-starter-aop")
 
+    // jasypt
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
+
+
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     testImplementation("io.rest-assured:rest-assured:4.5.1")
@@ -52,12 +56,20 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test")
 }
 
+configure<SourceSetContainer> {
+    named("main") {
+        java.srcDir("src/main/kotlin")
+    }
+}
+
 tasks.withType<KotlinCompile> {
     kotlinOptions {
         freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "11"
     }
 }
+
+tasks.jar { enabled = false }
 
 tasks.withType<Test> {
     useJUnitPlatform()
