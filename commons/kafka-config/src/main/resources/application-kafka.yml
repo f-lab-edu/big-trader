@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    topic: ENC(rquSXZty+YR3CbFB8RZCriyP6Czn8rJI)
+    bootstrap-servers: ENC(wuzRa4CxPYLC48kCDYeVtQHLbqqreZFM):9092
+    producer:
+      value-serializer: com.flab.bigtrader.common.kafka.serializer.CustomObjectSerializer
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
