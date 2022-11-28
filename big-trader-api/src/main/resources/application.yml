@@ -3,7 +3,7 @@ server:
 
 app:
   push:
-    base-url: http://localhost:9090리
+    base-url: http://localhost:9090
 
 ---
 spring:
