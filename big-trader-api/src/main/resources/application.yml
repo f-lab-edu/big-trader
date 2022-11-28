@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+app:
+  push:
+    base-url: http://localhost:9090리
+
 ---
 spring:
   config:
@@ -8,17 +12,11 @@ spring:
       on-profile: prod
     import:
       - application-kafka.yml
-app:
-  push:
-    base-url: http://localhost:9090
 
 ---
 spring:
   config:
     activate:
       on-profile: dev
-    import: application-kafka.yml
-
-app:
-  push:
-    base-url: http://localhost:9090
+    import:
+      - application-kafka.yml
