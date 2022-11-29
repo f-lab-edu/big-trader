@@ -52,9 +52,9 @@ jobs:
       - name: Deploy to Docker swarm
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
-          host: ${{ secrets.REMOTE_DOCKER_HOST }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.BIGTRAER_REMOTE_DOCKER_HOST }}
+          user: ${{ secrets.BIGTRAER_SSH_USER }}
+          key: ${{ secrets.BIGTRAER_DOCKER_SSH_PRIVATE_KEY }}
       - run: |
           docker login -u ${{ secrets.BIGTRADER_ACCESS_KEY }} ${{ secrets.BIGTRADER_DOCKER_REGISTRY }} -p ${{ secrets.BIGTRADER_SECRET_KEY }}
 
