@@ -55,7 +55,7 @@ jobs:
           pwd
           echo ${{ secrets.BIGTRAER_ENV_FILE }} > ./.env
 
-      - name: Deploy to Docker swarm
+      - name: Deploy Docker image on server
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
           host: ${{ secrets.BIGTRAER_REMOTE_DOCKER_HOST }}
