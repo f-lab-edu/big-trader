@@ -9,5 +9,3 @@ build/
 *.iml
 *.ipr
 out/
-
-*.yml
