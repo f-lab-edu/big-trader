@@ -1,7 +1,0 @@
-FROM amazoncorretto:11
-
-ARG JAR_FILE=./build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-ENV TZ=Asia/Seoul
-
-ENTRYPOINT ["java", "-Djasypt.encryptor.password=${JASYPT_PASSWORD}", "-Dspring.profiles.active=${USE_PROFILE}", "-jar","app.jar"]

@@ -44,6 +44,11 @@ jobs:
       - name: move big-trader-api-dir
         run: cd ./big-trader-api/
 
+      - name: make docker compose env file
+        run: |
+          pwd
+          echo ${{ secrets.BIGTRAER_ENV_FILE }} > ./.env
+
       - name: Deploy to Docker swarm
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:

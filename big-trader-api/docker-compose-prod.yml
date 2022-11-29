@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  big-trader-api:
+    image: "bigtrader.kr.ncr.ntruss.com/big-trader-api"
+    ports:
+      - "8000:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
+      JASYPT_ENCRYPTOR_PASSWORD: ${JASYPT_ENCRYPTOR_PASSWORD}
