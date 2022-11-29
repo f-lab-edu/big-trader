@@ -1,0 +1,8 @@
+spring:
+  config:
+    import:
+      - optional:application-kafka.yml
+
+app:
+  push:
+    base-url: http://localhost:9090
