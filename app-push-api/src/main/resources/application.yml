@@ -1,18 +1,2 @@
 server:
   port: 9090
-
----
-spring:
-  config:
-    activate:
-      on-profile: prod
-    import:
-      - application-kafka.yml
-
----
-spring:
-  config:
-    activate:
-      on-profile: dev
-    import:
-      - application-kafka.yml

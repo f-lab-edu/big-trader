@@ -1,0 +1,7 @@
+spring:
+  config:
+    import:
+      - optional:application-kafka.yml
+
+server:
+  port: 9090
