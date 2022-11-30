@@ -61,8 +61,6 @@ jobs:
       - run: |
           docker login -u ${{ secrets.BIGTRADER_ACCESS_KEY }} ${{ secrets.BIGTRADER_DOCKER_REGISTRY }} -p ${{ secrets.BIGTRADER_SECRET_KEY }}
 
-          docker ps -qa
-
-          docker rm -f $(docker ps -qa)
-          docker image rm -f $(docker image ls -q)
+          docker-compose -f ./big-trader-api/docker-compose-prod.yml down
+          
           docker-compose -f ./big-trader-api/docker-compose-prod.yml up -d
