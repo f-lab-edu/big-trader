@@ -45,7 +45,7 @@ jobs:
           password: ${{ secrets.BIGTRADER_SECRET_KEY }}
 
       - name: Jib container publish
-        run: ./gradelw :big-trader-api:jib
+        run: ./gradlew :big-trader-api:jib
 
       - name: move big-trader-api-dir
         run: cd ./big-trader-api/
