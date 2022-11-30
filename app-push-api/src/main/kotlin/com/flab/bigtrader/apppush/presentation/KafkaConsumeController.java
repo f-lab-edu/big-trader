@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class KafkaConsumeController {
-	
+
 	private final AppPushService appPushService;
 
 	@PostMapping("/app-push")
