@@ -53,7 +53,7 @@ jobs:
       - name: make docker compose env file
         run: |
           pwd
-          echo ${{ secrets.BIGTRAER_ENV_FILE }} > ./.env
+          echo ${{ secrets.BIGTRADER_ENV_FILE }} > ./.env
 
       - name: Deploy Docker image on server
         uses: pcjun97/action-setup-docker-host-ssh@v1
