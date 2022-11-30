@@ -6,6 +6,7 @@ plugins {
     id("org.asciidoctor.convert") version "1.5.8"
     id("io.freefair.lombok") version "6.5.1"
     id("checkstyle")
+    id("com.google.cloud.tools.jib") version "3.3.1"
 
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -55,6 +56,7 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
     apply(plugin = "org.asciidoctor.convert")
     apply(plugin = "checkstyle")
     apply(plugin = "io.freefair.lombok")
+    apply(plugin = "com.google.cloud.tools.jib")
 
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")
