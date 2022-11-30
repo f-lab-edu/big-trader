@@ -47,13 +47,10 @@ jobs:
       - name: Jib container publish
         run: ./gradlew :big-trader-api:jib
 
-      - name: move big-trader-api-dir
-        run: cd ./big-trader-api/
-
       - name: make docker compose env file
         run: |
           pwd
-          echo ${{ secrets.BIGTRADER_ENV_FILE }} > ./.env
+          echo ${{ secrets.BIGTRADER_ENV_FILE }} > ./big-trader-api/.env
 
       - name: Deploy Docker image on server
         uses: pcjun97/action-setup-docker-host-ssh@v1
@@ -68,4 +65,4 @@ jobs:
 
           docker rm -f $(docker ps -qa)
           docker image rm -f $(docker image ls -q)
-          docker-compose -f docker-compose-prod.yml up -d
+          docker-compose -f ./big-trader-api/docker-compose-prod.yml up -d
