@@ -29,6 +29,16 @@ jobs:
       - name: execute build
         run: ./gradlew big-trader-api:build -x test
 
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.BIGTRADER_DOCKER_REGISTRY }}
+          username: ${{ secrets.BIGTRADER_ACCESS_KEY }}
+          password: ${{ secrets.BIGTRADER_SECRET_KEY }}
+
+      - name: Jib container publish
+        run: ./gradlew :big-trader-api:jib
+
   app-push-api-test-and-build:
     runs-on: ubuntu-latest
 
@@ -52,3 +62,13 @@ jobs:
 
       - name: execute build
         run: ./gradlew app-push-api:build -x test
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.APP_PUSH_API_DOCKER_REGISTRY }}
+          username: ${{ secrets.APP_PUSH_API_ACCESS_KEY }}
+          password: ${{ secrets.APP_PUSH_API_SECRET_KEY }}
+
+      - name: Jib container publish
+        run: ./gradlew :app-push-api:jib
