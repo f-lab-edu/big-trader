@@ -1,4 +1,4 @@
-name: big-trader-ci-cd
+name: big-trader-cd
 
 on:
   push:
@@ -17,26 +17,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-          cache: gradle
-
-      - name: prepare gradle build
-        uses: gradle/gradle-build-action@v2
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Build with Gradle
-        run: ./gradlew big-trader-api:build
-
-      - name: Login to Cotainer Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ${{ secrets.BIGTRADER_DOCKER_REGISTRY }}
-          username: ${{ secrets.BIGTRADER_ACCESS_KEY }}
-          password: ${{ secrets.BIGTRADER_SECRET_KEY }}
-
-      - name: Jib container publish
-        run: ./gradlew :big-trader-api:jib
 
       - name: make docker compose env file
         run: |
@@ -46,9 +26,9 @@ jobs:
       - name: Deploy Docker image on server
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
-          host: ${{ secrets.BIGTRAER_REMOTE_DOCKER_HOST }}
-          user: ${{ secrets.BIGTRAER_SSH_USER }}
-          key: ${{ secrets.BIGTRAER_DOCKER_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.BIGTRADER_REMOTE_DOCKER_HOST }}
+          user: ${{ secrets.BIGTRADER_SSH_USER }}
+          key: ${{ secrets.BIGTRADER_DOCKER_SSH_PRIVATE_KEY }}
       - run: |
           docker login -u ${{ secrets.BIGTRADER_ACCESS_KEY }} ${{ secrets.BIGTRADER_DOCKER_REGISTRY }} -p ${{ secrets.BIGTRADER_SECRET_KEY }}
 
