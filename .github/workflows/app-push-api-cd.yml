@@ -18,17 +18,36 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: prepare gradle build
+        uses: gradle/gradle-build-action@v2
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build with Gradle
+        run: ./gradlew big-trader-api:build
+
+      - name: Login to Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ secrets.APP_PUSH_DOCKER_REGISTRY }}
+          username: ${{ secrets.APP_PUSH_ACCESS_KEY }}
+          password: ${{ secrets.APP_PUSH_SECRET_KEY }}
+
+      - name: Jib container publish
+        run: ./gradlew :big-trader-api:jib
+
       - name: make docker compose env file
         run: |
           pwd
-          echo ${{ secrets.APP_PUSH_API_ENV_FILE }} > ./app-push-api/.env
+          echo ${{ secrets.APP_PUSH_ENV_FILE }} > ./app-push-api/.env
 
       - name: Deploy Docker image on server
         uses: pcjun97/action-setup-docker-host-ssh@v1
         with:
-          host: ${{ secrets.APP_PUSH_API_REMOTE_DOCKER_HOST }}
-          user: ${{ secrets.APP_PUSH_API_SSH_USER }}
-          key: ${{ secrets.APP_PUSH_API_DOCKER_SSH_PRIVATE_KEY }}
+          host: ${{ secrets.APP_PUSH_REMOTE_DOCKER_HOST }}
+          user: ${{ secrets.APP_PUSH_SSH_USER }}
+          key: ${{ secrets.APP_PUSH_DOCKER_SSH_PRIVATE_KEY }}
       - run: |
           docker login -u ${{ secrets.APP_PUSH_API_ACCESS_KEY }} ${{ secrets.APP_PUSH_API_DOCKER_REGISTRY }} -p ${{ secrets.APP_PUSH_API_SECRET_KEY }}
 
