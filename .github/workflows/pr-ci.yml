@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - main
+
 jobs:
   big-trader-api-test-and-build:
     runs-on: ubuntu-latest
