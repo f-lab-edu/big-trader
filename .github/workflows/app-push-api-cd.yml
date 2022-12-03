@@ -25,7 +25,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: ./gradlew big-trader-api:build
+        run: ./gradlew app-push-api:build
 
       - name: Login to Container Registry
         uses: docker/login-action@v2
@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.APP_PUSH_SECRET_KEY }}
 
       - name: Jib container publish
-        run: ./gradlew :big-trader-api:jib
+        run: ./gradlew :app-push-api:jib
 
       - name: make docker compose env file
         run: |
@@ -49,7 +49,7 @@ jobs:
           user: ${{ secrets.APP_PUSH_SSH_USER }}
           key: ${{ secrets.APP_PUSH_DOCKER_SSH_PRIVATE_KEY }}
       - run: |
-          docker login -u ${{ secrets.APP_PUSH_API_ACCESS_KEY }} ${{ secrets.APP_PUSH_API_DOCKER_REGISTRY }} -p ${{ secrets.APP_PUSH_API_SECRET_KEY }}
+          docker login -u ${{ secrets.APP_PUSH_ACCESS_KEY }} ${{ secrets.APP_PUSH_DOCKER_REGISTRY }} -p ${{ secrets.APP_PUSH_SECRET_KEY }}
 
           docker-compose -f ./app-push-api/docker-compose-prod.yml down
           
