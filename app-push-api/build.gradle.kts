@@ -41,3 +41,12 @@ tasks {
         dependsOn(test)
     }
 }
+
+jib {
+    from {
+        image = "adoptopenjdk/openjdk11:alpine"
+    }
+    to {
+        image = "big-trader-docker-registry.kr.ncr.ntruss.com/app-push-api"
+    }
+}
