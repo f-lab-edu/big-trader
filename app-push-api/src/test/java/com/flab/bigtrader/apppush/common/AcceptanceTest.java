@@ -1,4 +1,4 @@
-package com.flab.bigtrader.common;
+package com.flab.bigtrader.apppush.common;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.test.context.SpringBootTest;

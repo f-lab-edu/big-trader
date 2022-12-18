@@ -71,9 +71,9 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
         testImplementation("io.rest-assured:rest-assured:4.5.1")
     }
 
-    val naverCheckStyleDir = File("${rootDir}/config/checkstyle/naver-checkstyle-rules.xml")
+    val naverCheckStyleDir = File("${rootDir}/checkstyle-config/checkstyle/naver-checkstyle-rules.xml")
     val naverSuppressionDir =
-        hashMapOf<String, Any>("suppressionFile" to "${rootDir}/config/checkstyle/naver-checkstyle-suppressions.xml")
+        hashMapOf<String, Any>("suppressionFile" to "${rootDir}/checkstyle-config/checkstyle/naver-checkstyle-suppressions.xml")
 
     checkstyle {
         maxWarnings = 0

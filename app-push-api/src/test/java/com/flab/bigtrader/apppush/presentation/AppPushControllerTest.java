@@ -6,7 +6,7 @@ import static org.assertj.core.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;
 
-import com.flab.bigtrader.common.AcceptanceTest;
+import com.flab.bigtrader.apppush.common.AcceptanceTest;
 
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;

@@ -4,6 +4,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import com.flab.bigtrader.KafkaProperties;
+import com.flab.bigtrader.apppush.infrastructure.dto.AppPushSendEvent;
 
 import lombok.extern.slf4j.Slf4j;
 

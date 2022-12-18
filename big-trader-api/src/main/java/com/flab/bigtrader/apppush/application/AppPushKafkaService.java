@@ -3,7 +3,7 @@ package com.flab.bigtrader.apppush.application;
 import org.springframework.stereotype.Service;
 
 import com.flab.bigtrader.apppush.infrastructure.AppPushKafkaProducer;
-import com.flab.bigtrader.apppush.infrastructure.AppPushSendEvent;
+import com.flab.bigtrader.apppush.infrastructure.dto.AppPushSendEvent;
 
 import lombok.RequiredArgsConstructor;
 
