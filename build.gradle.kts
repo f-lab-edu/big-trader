@@ -30,7 +30,7 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-val nonDependenciesProjects = listOf("commons", "jasypt-config", "kafka-config")
+val nonDependenciesProjects = listOf("commons", "jasypt-config", "kafka-config", "redis-config")
 
 configure(subprojects.filter { it.name in nonDependenciesProjects }) {
     apply(plugin = "checkstyle")

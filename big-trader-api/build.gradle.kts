@@ -17,8 +17,9 @@ dependencies {
     // AOP
     implementation("org.springframework.boot:spring-boot-starter-aop")
 
-    implementation(project(":commons:jasypt-config"))
-    implementation(project(":commons:kafka-config"))
+    implementation(project(":config:jasypt-config"))
+    implementation(project(":config:kafka-config"))
+    implementation(project(":config:redis-config"))
 
     // kafka test
     testImplementation("org.springframework.amqp:spring-rabbit-test")

@@ -10,8 +10,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-validation")
 
-    implementation(project(":commons:jasypt-config"))
-    implementation(project(":commons:kafka-config"))
+    implementation(project(":config:jasypt-config"))
+    implementation(project(":config:kafka-config"))
 
     // kafka test
     testImplementation("org.springframework.amqp:spring-rabbit-test")
