@@ -26,12 +26,6 @@ dependencies {
     testImplementation("org.springframework.kafka:spring-kafka-test")
 }
 
-// java 파일 분리 후 제거
-configure<SourceSetContainer> {
-    named("main") {
-        java.srcDir("src/main/kotlin")
-    }
-}
 
 tasks.withType<Test> {
     useJUnitPlatform()
