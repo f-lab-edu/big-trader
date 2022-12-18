@@ -5,7 +5,9 @@ import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
+@Profile(value = {"dev", "prod"})
 @Configuration
 public class JasyptConfig {
 	private final JasyptProperties jasyptProperties;
