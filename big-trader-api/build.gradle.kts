@@ -1,8 +1,4 @@
 dependencies {
-    // kafka
-    implementation("org.springframework.boot:spring-boot-starter-amqp")
-    implementation("org.springframework.kafka:spring-kafka")
-
     // kotlin dto serialization/deserialization
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -21,9 +17,8 @@ dependencies {
     implementation(project(":config:kafka-config"))
     implementation(project(":config:redis-config"))
 
-    // kafka test
-    testImplementation("org.springframework.amqp:spring-rabbit-test")
-    testImplementation("org.springframework.kafka:spring-kafka-test")
+
+    testImplementation(testFixtures(project(":config:kafka-config")))
 }
 
 

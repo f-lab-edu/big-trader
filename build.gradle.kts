@@ -7,6 +7,7 @@ plugins {
     id("io.freefair.lombok") version "6.5.1"
     id("checkstyle")
     id("com.google.cloud.tools.jib") version "3.3.1"
+    id("java-test-fixtures")
 
     kotlin("jvm") version "1.6.21"
     kotlin("plugin.spring") version "1.6.21"
@@ -35,6 +36,7 @@ val nonDependenciesProjects = listOf("commons", "jasypt-config", "kafka-config",
 configure(subprojects.filter { it.name in nonDependenciesProjects }) {
     apply(plugin = "checkstyle")
     apply(plugin = "io.freefair.lombok")
+    apply(plugin = "java-test-fixtures")
 
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
@@ -57,6 +59,7 @@ configure(subprojects.filter { it.name !in nonDependenciesProjects }) {
     apply(plugin = "checkstyle")
     apply(plugin = "io.freefair.lombok")
     apply(plugin = "com.google.cloud.tools.jib")
+    apply(plugin = "java-test-fixtures")
 
     apply(plugin = "org.jetbrains.kotlin.jvm")
     apply(plugin = "org.jetbrains.kotlin.plugin.spring")

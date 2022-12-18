@@ -6,6 +6,10 @@ plugins {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-validation")
+    
+    api("org.springframework.kafka:spring-kafka")
+
+    testFixturesApi("org.springframework.kafka:spring-kafka-test")
 }
 
 configurations {
