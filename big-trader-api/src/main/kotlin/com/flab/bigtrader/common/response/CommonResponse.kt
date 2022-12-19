@@ -9,7 +9,6 @@ data class CommonErrorResponse(
     }
 }
 
-
 data class CommonApiResponse<T>(
     val body: T,
     val message: String? = null,

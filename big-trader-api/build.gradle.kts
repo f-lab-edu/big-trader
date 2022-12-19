@@ -19,6 +19,7 @@ dependencies {
 
 
     testImplementation(testFixtures(project(":config:kafka-config")))
+    testImplementation(testFixtures(project(":config:redis-config")))
 }
 
 

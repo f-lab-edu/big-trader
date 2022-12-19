@@ -5,7 +5,10 @@ plugins {
 
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    api("org.springframework.boot:spring-boot-starter-data-redis")
+
+    testFixturesImplementation("it.ozimov:embedded-redis:0.7.2")
+    testFixturesImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.getByName<Test>("test") {
