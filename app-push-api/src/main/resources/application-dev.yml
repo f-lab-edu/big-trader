@@ -1,7 +1,9 @@
 spring:
+  kafka:
+    topic: ENC(rquSXZty+YR3CbFB8RZCriyP6Czn8rJI)
   config:
     import:
-      - optional:application-kafka.yml
+      - optional:application-kafka-dev.yml
 
 server:
   port: 9090
