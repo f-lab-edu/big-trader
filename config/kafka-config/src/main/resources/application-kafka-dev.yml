@@ -1,6 +1,5 @@
 spring:
   kafka:
-    topic: ENC(rquSXZty+YR3CbFB8RZCriyP6Czn8rJI)
     bootstrap-servers: ENC(wuzRa4CxPYLC48kCDYeVtQHLbqqreZFM):9092
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer

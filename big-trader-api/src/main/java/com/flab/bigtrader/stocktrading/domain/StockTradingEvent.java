@@ -5,7 +5,7 @@ import com.flab.bigtrader.stocktrading.presentation.dto.TradingType;
 import lombok.Getter;
 
 @Getter
-public class StockTradingBuyEvent {
+public class StockTradingEvent {
 
 	private final String id;
 
@@ -17,7 +17,7 @@ public class StockTradingBuyEvent {
 
 	private final TradingStatus tradingStatus;
 
-	public StockTradingBuyEvent(
+	public StockTradingEvent(
 		String id,
 		String name,
 		Long price,

@@ -1,6 +1,6 @@
 package com.flab.bigtrader.stocktrading.application.dto
 
-import com.flab.bigtrader.stocktrading.domain.StockTradingBuyEvent
+import com.flab.bigtrader.stocktrading.domain.StockTradingEvent
 import com.flab.bigtrader.stocktrading.presentation.dto.TradingType
 
 data class StockTradingCommand(
@@ -8,7 +8,7 @@ data class StockTradingCommand(
     val price: Long,
     val tradingType: TradingType,
 ) {
-    fun toEvent(id: String) = StockTradingBuyEvent(
+    fun toEvent(id: String) = StockTradingEvent(
         id,
         this.name,
         this.price,

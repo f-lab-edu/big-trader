@@ -1,4 +1,4 @@
-package com.flab.bigtrader.stocktrading.infrastructure;
+package com.flab.bigtrader.stocktrading.infrastructure.redis;
 
 import org.springframework.data.redis.core.ListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flab.bigtrader.common.exception.BusinessException;
-import com.flab.bigtrader.stocktrading.domain.StockTradingBuyEvent;
+import com.flab.bigtrader.stocktrading.domain.StockTradingEvent;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,26 +19,26 @@ public class StockRedisRepository {
 
 	private final ObjectMapper objectMapper;
 
-	public void saveStockBuyEvent(StockTradingBuyEvent stockTradingBuyEvent) {
-		String buyEvent = convertJsonOfBuyEvent(stockTradingBuyEvent);
+	public void saveStockEvent(StockTradingEvent stockTradingEvent) {
+		String event = convertJsonOfEvent(stockTradingEvent);
 
 		ListOperations<String, String> listOperations = redisTemplate.opsForList();
 
 		//TODO: redis 저장 못했을 경우 retry, backup data 저장소 필요
-		listOperations.rightPush(createKey(stockTradingBuyEvent), buyEvent);
+		listOperations.rightPush(createKey(stockTradingEvent), event);
 	}
 
-	private String createKey(StockTradingBuyEvent stockTradingBuyEvent) {
-		return stockTradingBuyEvent.getName()
+	private String createKey(StockTradingEvent stockTradingEvent) {
+		return stockTradingEvent.getName()
 			+ "-"
-			+ stockTradingBuyEvent.getPrice()
+			+ stockTradingEvent.getPrice()
 			+ "-"
-			+ stockTradingBuyEvent.getTradingType().name();
+			+ stockTradingEvent.getTradingType().name();
 	}
 
-	private String convertJsonOfBuyEvent(StockTradingBuyEvent stockTradingBuyEvent) {
+	private String convertJsonOfEvent(StockTradingEvent stockTradingEvent) {
 		try {
-			return objectMapper.writeValueAsString(stockTradingBuyEvent);
+			return objectMapper.writeValueAsString(stockTradingEvent);
 		} catch (JsonProcessingException e) {
 			throw new BusinessException("Json parse error");
 		}
