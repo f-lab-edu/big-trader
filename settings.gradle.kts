@@ -1,8 +1,10 @@
 rootProject.name = "bigtrader"
 include("app-push-api")
 include("big-trader-api")
-include("commons")
-include("commons:jasypt-config")
-findProject(":commons:jasypt-config")?.name = "jasypt-config"
-include("commons:kafka-config")
-findProject(":commons:kafka-config")?.name = "kafka-config"
+include("config")
+include("config:jasypt-config")
+findProject(":config:jasypt-config")?.name = "jasypt-config"
+include("config:kafka-config")
+findProject(":config:kafka-config")?.name = "kafka-config"
+include("config:redis-config")
+findProject(":config:redis-config")?.name = "redis-config"

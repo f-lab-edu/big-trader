@@ -1,8 +1,4 @@
 dependencies {
-    // kafka
-    implementation("org.springframework.boot:spring-boot-starter-amqp")
-    implementation("org.springframework.kafka:spring-kafka")
-
     // kotlin dto serialization/deserialization
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
@@ -17,20 +13,15 @@ dependencies {
     // AOP
     implementation("org.springframework.boot:spring-boot-starter-aop")
 
-    implementation(project(":commons:jasypt-config"))
-    implementation(project(":commons:kafka-config"))
+    implementation(project(":config:jasypt-config"))
+    implementation(project(":config:kafka-config"))
+    implementation(project(":config:redis-config"))
 
-    // kafka test
-    testImplementation("org.springframework.amqp:spring-rabbit-test")
-    testImplementation("org.springframework.kafka:spring-kafka-test")
+
+    testImplementation(testFixtures(project(":config:kafka-config")))
+    testImplementation(testFixtures(project(":config:redis-config")))
 }
 
-// java 파일 분리 후 제거
-configure<SourceSetContainer> {
-    named("main") {
-        java.srcDir("src/main/kotlin")
-    }
-}
 
 tasks.withType<Test> {
     useJUnitPlatform()
