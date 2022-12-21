@@ -10,11 +10,11 @@ import org.springframework.validation.annotation.Validated;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Profile(value = {"dev", "prod"})
 @Getter
 @Validated
 @ConstructorBinding
 @RequiredArgsConstructor
+@Profile(value = {"dev", "prod"})
 @ConfigurationProperties(prefix = "jasypt.encryptor")
 public class JasyptProperties {
 

@@ -16,5 +16,5 @@ data class StockTradingRequest(
 
 enum class TradingType {
     BUY,
-    Sell
+    SELL
 }
