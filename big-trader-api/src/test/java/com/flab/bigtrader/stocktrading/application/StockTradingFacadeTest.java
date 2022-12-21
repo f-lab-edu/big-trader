@@ -15,9 +15,9 @@ class StockTradingFacadeTest extends IntegrationTest {
 	@Autowired
 	private StockTradingFacade stockTradingFacade;
 
-	@DisplayName("주식 매수 메도 이벤트를 레디스 저장과 카프카 메시지 전송에 성공한다")
+	@DisplayName("주식 매수 메도 이벤트를 카프카 메시지 전송에 성공한다")
 	@Test
-	void 주식_매수_메도_이벤트를_레디스_저장과_카프카_메시지_전송에_성공한다() {
+	void 주식_매수_메도_이벤트를_카프카_메시지_전송에_성공한다() {
 		StockTradingCommand stockTradingCommand = new StockTradingCommand(
 			"SAMSUNG",
 			50000L,
