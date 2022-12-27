@@ -8,3 +8,4 @@ include("config:kafka-config")
 findProject(":config:kafka-config")?.name = "kafka-config"
 include("config:redis-config")
 findProject(":config:redis-config")?.name = "redis-config"
+include("stock-exchange")
