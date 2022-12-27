@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    topic: ENC(rquSXZty+YR3CbFB8RZCriyP6Czn8rJI)
+  config:
+    import:
+      - optional:application-kafka-dev.yml
+      - optional:application-redis-dev.yml
+
+server:
+  port: 8082
