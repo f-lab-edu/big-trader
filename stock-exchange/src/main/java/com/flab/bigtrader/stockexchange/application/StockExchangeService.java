@@ -1,12 +1,22 @@
 package com.flab.bigtrader.stockexchange.application;
 
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
 
+import com.flab.bigtrader.stockexchange.infrastructure.redis.StockExchangeRedis;
+import com.flab.bigtrader.stockexchange.presentation.dto.StockExchangeMessage;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class StockExchangeService {
-	/*
-	 * TODO
-	 * Redis에 매수 or 매도 주문이 있는 경우 체결 진행
-	 * 매수 or 매도 주문이 없는 경우 체결을 진행하지 않고 Redis에 저장
-	 * */
+
+	private final StockExchangeRedis stockExchangeRedis;
+
+	public void stockExchange(StockExchangeMessage stockExchangeMessage) {
+		String exchangeId = UUID.randomUUID().toString();
+		stockExchangeRedis.pushEventOnRight(stockExchangeMessage.toEvent(exchangeId));
+	}
 }
