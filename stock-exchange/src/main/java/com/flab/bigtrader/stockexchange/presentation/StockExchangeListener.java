@@ -14,7 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 public class StockExchangeListener {
 
 	private final StockExchangeService stockExchangeService;
-	
+
 	@KafkaListener(topics = "${spring.kafka.topic}")
 	public void stockExchange(String stock) {
 		log.info("{}", stock);
