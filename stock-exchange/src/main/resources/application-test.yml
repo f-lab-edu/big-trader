@@ -4,7 +4,4 @@ spring:
   config:
     import:
       - optional:application-kafka-test.yml
-      - optional:application-redis-prod.yml
-
-server:
-  port: 8082
+      - optional:application-redis-test.yml

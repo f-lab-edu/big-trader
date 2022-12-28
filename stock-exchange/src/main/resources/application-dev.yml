@@ -5,6 +5,3 @@ spring:
     import:
       - optional:application-kafka-dev.yml
       - optional:application-redis-dev.yml
-
-server:
-  port: 8082
