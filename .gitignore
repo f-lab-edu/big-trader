@@ -16,3 +16,5 @@ out/
 
 # terraform authentication
 **/*.tfvars
+**/.terraform.lock.hcl
+**/.terraform
