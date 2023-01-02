@@ -1,0 +1,7 @@
+spring:
+  kafka:
+    topic: ENC(rquSXZty+YR3CbFB8RZCriyP6Czn8rJI)
+  config:
+    import:
+      - optional:application-kafka-prod.yml
+      - optional:application-redis-prod.yml
