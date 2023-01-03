@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.flab.bigtrader.KafkaProperties;
-import com.flab.bigtrader.common.exception.BusinessException;
+import com.flab.bigtrader.common.exception.BigTraderBusinessException;
 import com.flab.bigtrader.stocktrading.domain.StockTradingEvent;
 
 import lombok.RequiredArgsConstructor;
@@ -35,7 +35,7 @@ public class StockKafkaProducer {
 		try {
 			return objectMapper.writeValueAsString(stockTradingEvent);
 		} catch (JsonProcessingException e) {
-			throw new BusinessException("Json parse error");
+			throw new BigTraderBusinessException("Json parse error");
 		}
 	}
 }
