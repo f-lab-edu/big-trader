@@ -13,3 +13,9 @@ build/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+
+# terraform authentication
+**/*.tfvars
+**/.terraform
+**/*.tfstate
+**/*.tfstate.backup
