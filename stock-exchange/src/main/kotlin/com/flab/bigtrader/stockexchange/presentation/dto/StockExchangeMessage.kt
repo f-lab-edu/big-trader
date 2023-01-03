@@ -1,18 +1,15 @@
 package com.flab.bigtrader.stockexchange.presentation.dto
 
-import com.flab.bigtrader.stockexchange.domain.StockExchangeEvent
+import com.flab.bigtrader.stockexchange.domain.TradingStatus
 
 data class StockExchangeMessage(
+    val id: String,
     val name: String,
     val price: Long,
-    val tradingType: TradingType
+    val count: Long,
+    val tradingType: TradingType,
+    val tradingStatus: TradingStatus
 ) {
-    fun toEvent(id: String) = StockExchangeEvent(
-        id,
-        this.name,
-        this.price,
-        this.tradingType
-    )
 }
 
 enum class TradingType {
