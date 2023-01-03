@@ -13,6 +13,8 @@ public class StockTradingEvent {
 
 	private final Long price;
 
+	private final Long count;
+
 	private final TradingType tradingType;
 
 	private final TradingStatus tradingStatus;
@@ -21,10 +23,12 @@ public class StockTradingEvent {
 		String id,
 		String name,
 		Long price,
+		Long count,
 		TradingType tradingType) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
+		this.count = count;
 		this.tradingType = tradingType;
 		this.tradingStatus = TradingStatus.WAITING;
 	}

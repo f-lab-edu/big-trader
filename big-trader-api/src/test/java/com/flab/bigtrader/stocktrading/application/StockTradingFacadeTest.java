@@ -21,6 +21,7 @@ class StockTradingFacadeTest extends IntegrationTest {
 		StockTradingCommand stockTradingCommand = new StockTradingCommand(
 			"SAMSUNG",
 			50000L,
+			5,
 			TradingType.BUY
 		);
 
