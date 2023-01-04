@@ -11,7 +11,7 @@ public class StockExchangeRedisConfig {
 
 	@Bean
 	public RedisScript<String> findRedisScript() {
-		Resource script = new ClassPathResource("scripts/lua/findsellstock.lua");
+		Resource script = new ClassPathResource("scripts/lua/findstock.lua");
 		return RedisScript.of(script, String.class);
 	}
 }
