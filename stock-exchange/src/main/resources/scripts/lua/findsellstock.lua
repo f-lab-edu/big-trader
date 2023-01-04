@@ -1,2 +1,2 @@
-local sellStock = redis.call("LPOP", KEYS[1])
-return sellStock
+local stockEvent = redis.call("LPOP", KEYS[1])
+return stockEvent
