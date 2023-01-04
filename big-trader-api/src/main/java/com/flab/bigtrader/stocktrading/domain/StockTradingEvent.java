@@ -17,8 +17,6 @@ public class StockTradingEvent {
 
 	private final TradingType tradingType;
 
-	private final TradingStatus tradingStatus;
-
 	public StockTradingEvent(
 		String id,
 		String name,
@@ -30,6 +28,5 @@ public class StockTradingEvent {
 		this.price = price;
 		this.count = count;
 		this.tradingType = tradingType;
-		this.tradingStatus = TradingStatus.WAITING;
 	}
 }
