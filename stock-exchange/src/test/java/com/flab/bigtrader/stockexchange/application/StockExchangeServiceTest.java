@@ -94,6 +94,54 @@ class StockExchangeServiceTest extends IntegrationTest {
 		);
 	}
 
+	@DisplayName("매수요청일때 체결할 수 있는 매도 요청 개수가 적을 경우 다음 체결 가능한개수를 가진 매도요청으로 모든개수가 체결된다")
+	@Test
+	void 매수요청일때_체결할_수_있는_매도_요청_개수가_적을_경우_다음_체결_가능한개수를_가진_매도요청으로_모든개수가_체결된다() {
+		매도_요청_저장(SAMSUNG_STOCK, ONE_STOCK);
+		매도_요청_저장(SAMSUNG_STOCK, TWO_STOCK);
+
+		StockExchangeEvent buyStockExchangeEvent = new StockExchangeEvent(
+			createUniqueId(),
+			SAMSUNG_STOCK,
+			SAMSUNG_STOCK_PRICE,
+			THREE_STOCK,
+			TradingType.BUY
+		);
+
+		stockExchangeService.stockExchange(buyStockExchangeEvent);
+
+		Optional<StockExchangeEvent> stockEvent = stockExchangeRedis.findStockEvent(
+			buyStockExchangeEvent.generateKey());
+
+		assertThat(stockEvent.isPresent()).isFalse();
+	}
+
+	@DisplayName("매수요청일때 체결할 수 있는 매도 요청 개수가 적을 경우 다음 매도 요청이 체결 가능하지 않을때 남은 개수만큼 매수요청이 저장된다")
+	@Test
+	void 매수요청일때_체결할_수_있는_매도_요청_개수가_적을_경우_다음_매도_요청이_체결_가능하지_않을때_남은_개수만큼_매수요청이_저장된다() {
+		매도_요청_저장(SAMSUNG_STOCK, ONE_STOCK);
+		매도_요청_저장(SAMSUNG_STOCK, ONE_STOCK);
+
+		StockExchangeEvent buyStockExchangeEvent = new StockExchangeEvent(
+			createUniqueId(),
+			SAMSUNG_STOCK,
+			SAMSUNG_STOCK_PRICE,
+			THREE_STOCK,
+			TradingType.BUY
+		);
+
+		stockExchangeService.stockExchange(buyStockExchangeEvent);
+
+		Optional<StockExchangeEvent> stockEvent = stockExchangeRedis.findStockEvent(
+			buyStockExchangeEvent.generateKey());
+
+		assertAll(
+			() -> assertThat(stockEvent.isPresent()).isTrue(),
+			() -> assertThat(stockEvent.get().getCount()).isEqualTo(ONE_STOCK)
+		);
+
+	}
+
 	private String createUniqueId() {
 		return UUID.randomUUID().toString();
 	}
@@ -102,7 +150,7 @@ class StockExchangeServiceTest extends IntegrationTest {
 		StockExchangeEvent sellStockExchangeEvent = new StockExchangeEvent(
 			createUniqueId(),
 			stockName,
-			52000L,
+			SAMSUNG_STOCK_PRICE,
 			count,
 			TradingType.SELL
 		);

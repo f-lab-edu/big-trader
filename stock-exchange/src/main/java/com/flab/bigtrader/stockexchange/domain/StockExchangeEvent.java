@@ -46,8 +46,8 @@ public class StockExchangeEvent {
 		return this.count >= count;
 	}
 
-	//TODO : 자기기준으로 클때
-	public Optional<StockExchangeEvent> exchangeGoe(Long count) {
+	//TODO : 자기기준으로 클거나 같을때
+	public Optional<StockExchangeEvent> exchange(Long count) {
 		long resultExchangeCount = this.count - count;
 
 		if (resultExchangeCount == 0L) {
@@ -64,4 +64,5 @@ public class StockExchangeEvent {
 			)
 		);
 	}
+
 }

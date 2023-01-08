@@ -13,6 +13,12 @@ public class StockExchangeFixture {
 
 	public static final Long SELL_STOCK_COUNT = 5L;
 
+	public static final Long ONE_STOCK = 1L;
+
+	public static final Long TWO_STOCK = 2L;
+
+	public static final Long THREE_STOCK = 3L;
+
 	/**
 	 * STOCK Price
 	 */

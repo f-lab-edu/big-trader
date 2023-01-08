@@ -16,7 +16,7 @@ public class StockExchangeService {
 	private final StockExchangeRedis stockExchangeRedis;
 
 	public void stockExchange(StockExchangeEvent requestStockExchangeEvent) {
-		// RUNTIME EXCEPTION 추후 변경 예정
+		//TODO: RUNTIME EXCEPTION 추후 변경 예정
 		Optional<StockExchangeEvent> optionalStockExchangeEvent = stockExchangeRedis.findStockEvent(
 			requestStockExchangeEvent.generateReverseKey());
 
@@ -25,14 +25,38 @@ public class StockExchangeService {
 			return;
 		}
 
-		//TODO: optional get 사용안하도록 변경해야함
 		StockExchangeEvent findStockExchangeEvent = optionalStockExchangeEvent.get();
 
 		if (findStockExchangeEvent.isGoe(requestStockExchangeEvent.getCount())) {
-			findStockExchangeEvent.exchangeGoe(requestStockExchangeEvent.getCount())
+			findStockExchangeEvent.exchange(requestStockExchangeEvent.getCount())
 				.ifPresent(stockExchangeRedis::pushEventOnRight);
+
 			return;
 		}
 
+		requestStockExchangeEvent.exchange(findStockExchangeEvent.getCount())
+			.ifPresent(this::executeExchangeLoop);
+
+	}
+
+	private void executeExchangeLoop(StockExchangeEvent requestStockExchangeEvent) {
+		while (true) {
+			Optional<StockExchangeEvent> optionalStockExchangeEvent = stockExchangeRedis.findStockEvent(
+				requestStockExchangeEvent.generateReverseKey());
+
+			if (optionalStockExchangeEvent.isEmpty()) {
+				stockExchangeRedis.pushEventOnRight(requestStockExchangeEvent);
+				return;
+			}
+
+			Optional<StockExchangeEvent> resultStockExchange = requestStockExchangeEvent.exchange(
+				optionalStockExchangeEvent.get().getCount());
+
+			if (resultStockExchange.isEmpty()) {
+				return;
+			}
+
+			requestStockExchangeEvent = resultStockExchange.get();
+		}
 	}
 }
