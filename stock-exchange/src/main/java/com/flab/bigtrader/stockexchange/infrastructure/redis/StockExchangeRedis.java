@@ -24,11 +24,6 @@ public class StockExchangeRedis {
 
 	private final ObjectMapper objectMapper;
 
-	/*
-	 * TODO
-	 * popEventOnLeft 로직 작성
-	 * */
-
 	public void pushEventOnRight(StockExchangeEvent stockExchangeEvent) {
 		ListOperations<String, String> operations = redisTemplate.opsForList();
 		operations.rightPush(stockExchangeEvent.generateKey(), convertEventToJson(stockExchangeEvent));
