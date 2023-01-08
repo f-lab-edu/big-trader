@@ -22,6 +22,13 @@ public class StockExchangeService {
 
 		if (optionalStockEvent.isEmpty()) {
 			stockExchangeRedis.pushEventOnRight(stockExchangeEvent);
+			return;
+		}
+
+		StockExchangeEvent findStockEvent = optionalStockEvent.get();
+
+		if (findStockEvent.isSameCount(stockExchangeEvent.getCount())) {
+			return;
 		}
 	}
 }

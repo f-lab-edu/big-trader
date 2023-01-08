@@ -35,4 +35,8 @@ public class StockExchangeEvent {
 	public String generateReverseKey() {
 		return this.name + "-" + this.price + "-" + this.tradingType.getReverseType();
 	}
+
+	public boolean isSameCount(Long count) {
+		return this.count.equals(count);
+	}
 }
