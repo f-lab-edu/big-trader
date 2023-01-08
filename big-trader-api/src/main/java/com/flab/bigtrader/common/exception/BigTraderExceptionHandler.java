@@ -11,11 +11,11 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class BigTraderExceptionHandler {
 
-	@ExceptionHandler(BusinessException.class)
+	@ExceptionHandler(BigTraderBusinessException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public CommonErrorResponse handleBusinessException(BusinessException ex) {
+	public CommonErrorResponse handleBusinessException(BigTraderBusinessException ex) {
 		return CommonErrorResponse.of(ex.getMessage());
 	}
 
@@ -34,7 +34,8 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(UnSupportedAppPushOperationException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public CommonErrorResponse handleUnSupportedAppPushOperationException(UnSupportedAppPushOperationException ex) {
+	public CommonErrorResponse handleUnSupportedAppPushOperationException(
+		UnSupportedAppPushOperationException ex) {
 		return CommonErrorResponse.of(ex.getMessage());
 	}
 }

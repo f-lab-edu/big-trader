@@ -50,8 +50,10 @@ public class BlockingAppPushClient implements AppPushClient {
 			.contentType(MediaType.APPLICATION_JSON)
 			.bodyValue(appPushSendEvent)
 			.retrieve()
-			.onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(AppPushServerParameterException::new))
-			.onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(AppPushServerConnectionException::new))
+			.onStatus(HttpStatus::is4xxClientError, clientResponse -> Mono.error(
+				AppPushServerParameterException::new))
+			.onStatus(HttpStatus::is5xxServerError, clientResponse -> Mono.error(
+				AppPushServerConnectionException::new))
 			.toBodilessEntity()
 			.timeout(Duration.ofSeconds(80))
 			.onErrorMap(ReadTimeoutException.class, AppPushServerConnectionException::new);

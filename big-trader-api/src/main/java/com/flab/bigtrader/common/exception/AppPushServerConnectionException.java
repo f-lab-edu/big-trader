@@ -1,6 +1,6 @@
 package com.flab.bigtrader.common.exception;
 
-public class AppPushServerConnectionException extends BusinessException {
+public class AppPushServerConnectionException extends BigTraderBusinessException {
 
 	private static final String MESSAGE = "앱 푸쉬 서버 에러입니다.";
 

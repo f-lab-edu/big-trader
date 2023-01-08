@@ -27,6 +27,7 @@ class StockChangeControllerTest extends AcceptanceTest {
 		StockTradingRequest stockTradingRequest = new StockTradingRequest(
 			"SAMSUNG",
 			50000L,
+			10,
 			TradingType.BUY
 		);
 

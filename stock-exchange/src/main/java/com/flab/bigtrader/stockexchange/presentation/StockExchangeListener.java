@@ -20,7 +20,7 @@ public class StockExchangeListener {
 
 	@KafkaListener(topics = "${spring.kafka.topic}")
 	public void stockExchange(String stock) {
-		stockExchangeService.stockExchange(convertJsonToMessage(stock));
+		stockExchangeService.stockExchange(convertJsonToMessage(stock).toEvent());
 	}
 
 	private StockExchangeMessage convertJsonToMessage(String stock) {
