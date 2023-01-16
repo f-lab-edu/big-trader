@@ -38,31 +38,43 @@ public class StockExchangeEvent {
 		return this.name + "-" + this.price + "-" + this.tradingType.getReverseType();
 	}
 
-	public boolean isSameCount(Long count) {
-		return this.count.equals(count);
-	}
-
-	public boolean isGoe(Long count) {
-		return this.count >= count;
-	}
-
-	//TODO : 자기기준으로 클거나 같을때
 	public Optional<StockExchangeEvent> exchange(Long count) {
-		long resultExchangeCount = this.count - count;
+		if (isGreaterThan(count)) {
+			long resultExchangeCount = this.count - count;
 
-		if (resultExchangeCount == 0L) {
-			return Optional.empty();
+			return Optional.of(
+				new StockExchangeEvent(
+					this.id,
+					this.name,
+					this.price,
+					resultExchangeCount,
+					this.tradingType
+				)
+			);
 		}
 
-		return Optional.of(
-			new StockExchangeEvent(
-				this.id,
-				this.name,
-				this.price,
-				resultExchangeCount,
-				this.tradingType
-			)
-		);
+		if (isLessThan(count)) {
+			long resultExchangeCount = count - this.count;
+
+			return Optional.of(
+				new StockExchangeEvent(
+					this.id,
+					this.name,
+					this.price,
+					resultExchangeCount,
+					this.tradingType.getReverseType()
+				)
+			);
+		}
+
+		return Optional.empty();
 	}
 
+	private boolean isGreaterThan(Long count) {
+		return this.count > count;
+	}
+
+	private boolean isLessThan(Long count) {
+		return this.count < count;
+	}
 }
