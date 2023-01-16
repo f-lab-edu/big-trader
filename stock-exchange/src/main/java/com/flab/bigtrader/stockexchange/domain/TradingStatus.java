@@ -1,6 +1,6 @@
 package com.flab.bigtrader.stockexchange.domain;
 
-public enum ExchangeStatus {
+public enum TradingStatus {
 	WAITING,
 	COMPLETE
 }
