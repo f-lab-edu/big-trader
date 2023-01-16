@@ -1,4 +1,4 @@
-package com.flab.bigtrader.stockexchange.config;
+package com.flab.bigtrader.stockexchange.common.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -14,8 +14,8 @@ import lombok.RequiredArgsConstructor;
 public class StockExchangeService {
 
 	private final StockExchangeRedis stockExchangeRedis;
-
-	public void stockExchange(StockExchangeEvent requestStockExchangeEvent) {
+	
+	public void stockExchange(final StockExchangeEvent requestStockExchangeEvent) {
 		//TODO: RUNTIME EXCEPTION 추후 변경 예정
 		Optional<StockExchangeEvent> optionalStockExchangeEvent = stockExchangeRedis.findStockEvent(
 			requestStockExchangeEvent.generateReverseKey());

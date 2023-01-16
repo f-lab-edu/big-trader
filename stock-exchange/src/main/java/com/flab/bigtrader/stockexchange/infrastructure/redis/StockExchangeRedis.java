@@ -10,10 +10,13 @@ import org.springframework.stereotype.Repository;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.flab.bigtrader.stockexchange.common.exception.JsonConvertException;
 import com.flab.bigtrader.stockexchange.domain.StockExchangeEvent;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Repository
 @RequiredArgsConstructor
 public class StockExchangeRedis {
@@ -43,9 +46,8 @@ public class StockExchangeRedis {
 		try {
 			return objectMapper.writeValueAsString(stockExchangeEvent);
 		} catch (JsonProcessingException exception) {
-
-			//TODO: RUNTIME EXCEPTION 추후 개선
-			throw new RuntimeException("parse error");
+			log.error("json parse error", exception);
+			throw new JsonConvertException("parse error");
 		}
 	}
 
@@ -53,7 +55,8 @@ public class StockExchangeRedis {
 		try {
 			return objectMapper.readValue(stockExchangeEvent, StockExchangeEvent.class);
 		} catch (JsonProcessingException exception) {
-			throw new RuntimeException("parse error");
+			log.error("json to object convert error", exception);
+			throw new JsonConvertException("json to object convert error");
 		}
 	}
 }
